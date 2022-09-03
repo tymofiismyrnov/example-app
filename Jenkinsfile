@@ -11,7 +11,7 @@ node {
 
 	stage ('Test') {
 		app.inside {
-			sh 'npm test'
+			sh 'npm version'
 		}
 	}
 
