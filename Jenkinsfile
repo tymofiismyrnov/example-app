@@ -6,11 +6,17 @@ node {
 	}
 
 	stage ('Build image') {
-		app = docker.build('tymofiismyrov/example-app')
+		app = docker.build('tymofiismyrnov/example-app')
+	}
+
+	stage ('Test') {
+		app.inside {
+			sh 'npm test'
+		}
 	}
 
 	stage('Push image') {
-		docker.withRegistry('https://registry.hub.doker.com', 'docker-hub-credentials') {
+		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
 			app.push('latest')
 		}
 	}
